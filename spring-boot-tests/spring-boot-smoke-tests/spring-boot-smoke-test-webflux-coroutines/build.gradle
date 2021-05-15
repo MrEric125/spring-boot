@@ -1,6 +1,16 @@
+
+buildscript {
+	repositories {
+		maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }  // 添加阿里源
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' } // 添加阿里源
+		maven { url "https://maven.aliyun.com/nexus/content/repositories/spring-plugin" } // 添加Spring源
+		maven { url "https://maven.aliyun.com/nexus/content/repositories/gradle-plugin" }  // 添加Spring依赖源
+	}
+}
+
 plugins {
 	id "org.jetbrains.kotlin.jvm"
-	id "org.jetbrains.kotlin.plugin.spring"
+//	id "org.jetbrains.kotlin.plugin.spring"
 	id "org.springframework.boot.conventions"
 }
 

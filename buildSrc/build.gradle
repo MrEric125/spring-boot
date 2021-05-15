@@ -5,6 +5,12 @@ plugins {
 }
 
 repositories {
+
+	maven { url 'https://maven.aliyun.com/repository/public' }
+	maven { url 'https://maven.aliyun.com/repository/central' }
+	maven { url "https://maven.aliyun.com/repository/spring" }  // 添加Spring依赖源
+	maven { url "https://maven.aliyun.com/repository/spring-plugin" }  // 添加Spring依赖源
+	maven { url "https://maven.aliyun.com/repository/gradle-plugin" }  // 添加Spring依赖源
 	mavenCentral()
 	gradlePluginPortal()
 	maven { url "https://repo.spring.io/release" }
