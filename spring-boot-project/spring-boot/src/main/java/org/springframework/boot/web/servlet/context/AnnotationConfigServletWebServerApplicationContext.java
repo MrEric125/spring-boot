@@ -52,6 +52,7 @@ import org.springframework.util.ClassUtils;
  * @see #scan(String...)
  * @see ServletWebServerApplicationContext
  * @see AnnotationConfigServletWebApplicationContext
+ * 这个类没什么特殊的，只是这个类接受通过注解的方式启动spring-web容器
  */
 public class AnnotationConfigServletWebServerApplicationContext extends ServletWebServerApplicationContext
 		implements AnnotationConfigRegistry {

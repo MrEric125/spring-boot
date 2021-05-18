@@ -282,6 +282,7 @@ public class SpringApplication {
 		this.resourceLoader = resourceLoader;
 		Assert.notNull(primarySources, "PrimarySources must not be null");
 		this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
+		//选择具体使用那种web模式，reactor 和servlet方式不一样
 		this.webApplicationType = WebApplicationType.deduceFromClasspath();
 		this.bootstrapRegistryInitializers = getBootstrapRegistryInitializersFromSpringFactories();
 		setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class));
@@ -329,10 +330,15 @@ public class SpringApplication {
 		SpringApplicationRunListeners listeners = getRunListeners(args);
 		listeners.starting(bootstrapContext, this.mainApplicationClass);
 		try {
+			// 组装运行容器朵朵参数
 			ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
+
 			ConfigurableEnvironment environment = prepareEnvironment(listeners, bootstrapContext, applicationArguments);
 			configureIgnoreBeanInfo(environment);
 			Banner printedBanner = printBanner(environment);
+			// 创建spring boot 上下文,如果我们实现了ApplicationContextAware 这个接口，那么实现方法中的applicationContext就是这个Context
+			// 这个有个题外话，spring中的Aware接口的原理是什么？
+			// context 实际类型为 AnnotationConfigServletWebServerApplicationContext
 			context = createApplicationContext();
 			context.setApplicationStartup(this.applicationStartup);
 			prepareContext(bootstrapContext, context, environment, listeners, applicationArguments, printedBanner);

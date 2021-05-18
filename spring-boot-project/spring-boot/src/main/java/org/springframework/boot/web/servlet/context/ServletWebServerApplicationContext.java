@@ -138,6 +138,12 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 		registerWebApplicationScopes();
 	}
 
+	/**
+	 * 启动项目的核心代码
+	 * @throws BeansException
+	 * @throws IllegalStateException
+	 */
+
 	@Override
 	public final void refresh() throws BeansException, IllegalStateException {
 		try {

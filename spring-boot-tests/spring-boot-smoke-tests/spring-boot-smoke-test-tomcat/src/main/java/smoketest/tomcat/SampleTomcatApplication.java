@@ -22,14 +22,23 @@ import javax.servlet.ServletContextListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+
+@RestController
 @SpringBootApplication
-public class SampleTomcatApplication {
+public class SampleTomcatApplication implements ApplicationContextAware {
 
 	private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
+
+	private ApplicationContext applicationContext;
 
 	@Bean
 	protected ServletContextListener listener() {
@@ -48,8 +57,17 @@ public class SampleTomcatApplication {
 		};
 	}
 
+	@RequestMapping("/request")
+	public String request(){
+		return applicationContext.getApplicationName();
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(SampleTomcatApplication.class, args);
 	}
 
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
 }
