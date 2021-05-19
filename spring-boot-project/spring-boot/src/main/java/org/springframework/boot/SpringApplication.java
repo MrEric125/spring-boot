@@ -423,6 +423,8 @@ public class SpringApplication {
 					.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
 		}
 		if (this.lazyInitialization) {
+			// beanFactory 后置处理器，这个添加的后置处理器会在BeanFactory refresh执行之前执行
+			// 在ApplicationContext 中是invokeBeanFactoryPostProcessors()方法中执行
 			context.addBeanFactoryPostProcessor(new LazyInitializationBeanFactoryPostProcessor());
 		}
 		// Load the sources
